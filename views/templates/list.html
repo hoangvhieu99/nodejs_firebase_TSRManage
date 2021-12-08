@@ -34,12 +34,11 @@
                     <thead>
                         <tr>
                             <th style="width: 1%">ID</th>
-                            <th style="width: 20%">Name</th>
-                            <th>Image</th>
-                            <th style="width: 20%">Content</th>
-                            <th style="width: 50%">Penalty</th>
-
-                            <th style="width: 20%">Click</th>
+                            <th style="width: 10%">Tên Biển Báo</th>
+                            <th>Ảnh</th>
+                            <th style="width: 40%">Nội Dung Biển Báo</th>
+                            <th style="width: 30%">Mức Phạt Vi Phạm</th>
+                            <th style="width: 10%">Tuỳ Chọn</th>
                         </tr>
                     </thead>
 
@@ -66,12 +65,11 @@
                     <thead>
                         <tr>
                             <th style="width: 1%">ID</th>
-                            <th style="width: 20%">Name</th>
-                            <th>Image</th>
-                            <th style="width: 20%">Content</th>
-                            <th style="width: 50%">Penalty</th>
-
-                            <th style="width: 20%">Click</th>
+                            <th style="width: 20%">Tên Biển Báo</th>
+                            <th>Ảnh</th>
+                            <th style="width: 40%">Nội Dung Biển Báo</th>
+                            <th style="width: 30%">Mức Phạt Vi Phạm</th>
+                            <th style="width: 20%">Tuỳ Chọn</th>
                         </tr>
                     </thead>
 
@@ -105,22 +103,22 @@
 
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Name</label>
+                        <label for="exampleInputPassword1">Tên Biển Báo</label>
                         <input type="text" class="form-control" id="edit_name" placeholder="Name">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Content</label>
+                        <label for="exampleInputPassword1">Nội Dung Biển Báo</label>
                         <input type="text" class="form-control" id="edit_content" placeholder="Content">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Penalty</label>
+                        <label for="exampleInputPassword1">Mức Phạt Vi Phạm</label>
                         <input type="text" class="form-control" id="edit_penalty" placeholder="Penalty">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" id="save" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" id="save" class="btn btn-primary" data-dismiss="modal">Lưu Thay Đổi</button>
             </div>
 
         </div>
@@ -192,7 +190,7 @@
 
     function deleteID(id) {
         var txt;
-        var r = confirm("Are you sure delete ?");
+        var r = confirm("Bạn chắc chắn muốn xoá?");
         if (r == true) {
             $.ajax({
                 url: `/api/deleteItem/${id}`,

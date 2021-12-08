@@ -11,17 +11,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Create the traffic sign</h3>
-            </div>
-            <div class="title_right">
-                <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                  <button class="btn btn-secondary" type="button">Go!</button>
-                </span>
-                    </div>
-                </div>
+                <h3>Thêm Biển Báo</h3>
             </div>
         </div>
 
@@ -61,7 +51,7 @@
 
 
                                     <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">GroupType<span class="required">*</span></label>
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Loại Biển Báo<span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
                                             <select class="form-control" id="group" type="GroupType" class='GroupType' name="GroupType">
                                     
@@ -80,26 +70,25 @@
                                             <input class="form-control" class='ID' id="id" name="id" data-validate-length-range="5,15" type="text" required='true' /></div>
                                     </div>
                                     <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required">*</span></label>
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Tên Biển Báo<span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
                                             <input class="form-control" id="name" data-validate-length-range="6" data-validate-words="2" name="Name" required="required" /></div>
                                     </div>
 
                                     <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Content <span class="required">*</span></label>
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Nội Dung Biển Báo<span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
                                             <input class="form-control" id="content" type="text" class='Content' name="Content" required='required'></div>
                                     </div>
                                     <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Penalty<span class="required">*</span></label>
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Mức Phạt Vi Phạm<span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
                                             <input class="form-control" id="penalty" type='text' class="Penalty" name="Penalty" required></div>
                                     </div>
                                     <div class="ln_solid">
                                         <div class="form-group">
                                             <div class="col-md-6 offset-md-3">
-                                                <li><button type='button' id="create" class="btn btn-primary"> Create </button>
-                                                    <button type='reset' class="btn btn-success">Reset</button>
+                                                <li><button type='button' id="create" class="btn btn-primary"> Thêm </button>
                                                 </li>
 
 
@@ -161,38 +150,68 @@
 
         });
 
-
         $('#create').click((e) => {
             var id = $('#id').val()
             var group = groupType($('#group').val());
             var name = $('#name').val()
             var content = $('#content').val()
             var penalty = $('#penalty').val()
+            if (id == '' || group == '' || name == '' || content == '' || penalty == '' || localStorage.getItem("img") === null) {
+                alert('Form chưa đủ!! Mời bạn điền đầy đủ thông tin')
+            } else {
 
-            data = {
-                id,
-                group,
-                name,
-                content,
-                penalty,
-                url: JSON.parse(window.localStorage.getItem('img'))
-            }
-
-            $.ajax({
-                url: '/api/create/trafficSign', // 
-                data: data,
-                dataType: "JSON",
-                type: 'post',
-
-                success: function(res) {
-                    alert('Success')
-                    window.localStorage.clear()
-                    window.location.href = '/list'
+                data = {
+                    id,
+                    group,
+                    name,
+                    content,
+                    penalty,
+                    url: JSON.parse(window.localStorage.getItem('img'))
                 }
-            });
 
+                $.ajax({
+                    url: '/api/create/trafficSign', // 
+                    data: data,
+                    dataType: "JSON",
+                    type: 'post',
 
+                    success: function(res) {
+                        alert('Success')
+                        window.localStorage.clear()
+                        window.location.href = '/list'
+                    }
+                });
+            }
         })
+        //$('#create').click((e) => {
+        //   var id = $('#id').val()
+        //   var group = groupType($('#group').val());
+        //    var name = $('#name').val()
+        //    var content = $('#content').val()
+        //    var penalty = $('#penalty').val()
+
+        //    data = {
+        //       id,
+        //        group,
+        //        name,
+        //        content,
+        //        penalty,
+        //        url: JSON.parse(window.localStorage.getItem('img'))
+        //    }
+
+        //    $.ajax({
+        //        url: '/api/create/trafficSign', // 
+        //        data: data,
+        //        dataType: "JSON",
+        //        type: 'post',
+
+        //        success: function(res) {
+        //            alert('Success')
+        //            window.localStorage.clear()
+        //            window.location.href = '/list'
+        //        }
+        //    });
+        //})
 
         function groupType(value) {
             switch (value) {
